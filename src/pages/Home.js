@@ -1,7 +1,8 @@
 import React from 'react';
 import './Home.css';
-import Nav from './Nav'; // Import the Nav component
+import Nav from '../components/Nav'; 
 import waterGallons from '../assets/waterGallons.png'
+import {useNavigate} from 'react-router-dom';
 
 function Home() {
   return (

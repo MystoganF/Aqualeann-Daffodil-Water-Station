@@ -4,13 +4,13 @@
   align-items: center;
   
   background-color: #fff;
-  gap: 570px;
+  gap: 550px;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 5px;
 }
 
 .logo-image {
