@@ -5,6 +5,16 @@ import waterGallons from '../assets/waterGallons.png'
 import {useNavigate} from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate();
+
+  const navToOrder = () =>{
+    navigate('/order-packages');
+  }
+
+  const navToAbout = () => {
+    navigate('/about');
+  }
+
   return (
     <div className="home">
       {/* Header */}
@@ -25,8 +35,8 @@ function Home() {
               <h1>Pure Refreshment Delivered to Your Door</h1>
               <p>Experience the crisp, clean taste of our purified, mineral-enriched alkaline water. Your health deserves the best hydration.</p>
               <div className="hero-buttons">
-                <button className="btn btn-primary">Order Now</button>
-                <button className="btn btn-secondary">Learn More</button>
+                <button className="btn btn-primary" onClick={navToOrder}> Order Now</button>
+                <button className="btn btn-secondary" onClick={navToAbout}>Learn More</button>
               </div>
             </div>
             <div className="hero-image">

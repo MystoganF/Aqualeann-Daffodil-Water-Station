@@ -24,6 +24,7 @@ Delivery Management	Assign and monitor deliveries, drivers, routes, and delivery
 Payment & Sales Reports	Generate daily, weekly, and monthly reports for income and expenses.
 Notifications / Alerts	Alerts for due deliveries, unpaid accounts, and low-stock inventory.
 System Settings	Manage price per gallon, refill types, and user credentials.
+
 📄 Suggested Pages
 1. Login Page
 

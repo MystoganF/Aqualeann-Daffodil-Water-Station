@@ -20,6 +20,24 @@
   color: #555;
 }
 
+/* Savings Note in Hero */
+.savings-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-top: 15px;
+  font-size: 0.95rem;
+}
+
+.savings-note svg {
+  margin-bottom: -2px;
+}
+
 /* Packages Section */
 .order-packages {
   padding: 80px 0;
@@ -40,6 +58,9 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure all cards are same height */
 }
 
 .order-card:hover {
@@ -55,23 +76,182 @@
 .order-card h3 {
   font-size: 1.4rem;
   color: #1a5276;
-  margin-bottom: 8px;
-}
-
-.gallons {
-  font-weight: 600;
   margin-bottom: 5px;
+  min-height: 42px; /* Fixed height for title */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.free {
+/* Gallons Display */
+.gallons-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0;
+  min-height: 60px; /* Fixed height for gallons display */
+}
+
+.gallons-count {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1a5276;
+  line-height: 1;
+}
+
+.gallons-label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+/* Free Display */
+.free-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: #e8f5e9;
+  border: 2px solid #4caf50;
+  border-radius: 20px;
+  padding: 6px 12px;
+  margin: 5px 0 15px;
+  min-height: 40px; /* Fixed height for free display */
+}
+
+.free-icon {
+  color: #4caf50;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.free-count {
+  color: #4caf50;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.free-label {
+  color: #2e7d32;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Price Section */
+.price-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+  flex-grow: 1; /* Allow price section to grow */
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.price-row:last-child {
+  border-bottom: none;
+}
+
+.total-row {
+  border-top: 2px solid #ddd;
+  border-bottom: none;
+  padding-top: 10px;
+  margin-top: 5px;
+}
+
+.effective-row {
+  background: #e3f2fd;
+  margin: 5px -15px -5px -15px;
+  padding: 8px 15px;
+  border-radius: 0 0 8px 8px;
+}
+
+.price-label {
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.price-value {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.price-value.total {
+  font-size: 1.2rem;
   color: #2c7fb8;
   font-weight: 700;
 }
 
-.delivery {
-  margin: 15px 0 25px;
-  font-size: 0.95rem;
+.price-value.effective {
+  color: #4caf50;
+  font-weight: 700;
+}
+
+.price-value.free-delivery {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+/* Savings Display */
+.savings-display {
+  background: #e8f5e9;
+  border: 2px solid #4caf50;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.savings-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #2e7d32;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.savings-amount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.savings-price {
+  color: #2e7d32;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.savings-percentage {
+  color: #4caf50;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Comparison Note */
+.comparison-note {
+  font-size: 0.8rem;
   color: #666;
+  margin: 5px 0;
+  text-align: center;
+  font-style: italic;
+  min-height: 20px; /* Fixed height for comparison note */
 }
 
 /* Most Popular */
@@ -84,30 +264,203 @@
   position: absolute;
   top: -14px;
   right: 20px;
-  background: #2c7fb8;
+  background: linear-gradient(135deg, #2c7fb8 0%, #4caf50 100%);
   color: white;
   padding: 6px 14px;
   font-size: 0.85rem;
   font-weight: 600;
   border-radius: 999px;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
 }
 
-/* Button reuse from Home */
-.order-card .btn {
-  margin-top: auto;
+/* Button Container - Key fix for alignment */
+.button-container {
+  margin-top: auto; /* Push button to bottom */
+  padding-top: 15px;
+}
+
+.order-card .btn-primary {
   width: 100%;
+  padding: 14px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0; /* Remove margin from button */
 }
 
+/* Pricing Note */
+.pricing-note {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.pricing-note p {
+  margin: 0;
+}
+
+.pricing-note strong {
+  color: #2c7fb8;
+}
 
 /* Mobile */
 @media (max-width: 768px) {
   .order-hero h1 {
     font-size: 2rem;
   }
+  
+  .gallons-count {
+    font-size: 1.8rem;
+  }
+  
+  .gallons-label {
+    font-size: 0.8rem;
+  }
+  
+  .free-display {
+    padding: 4px 10px;
+  }
+  
+  .free-label {
+    font-size: 0.75rem;
+  }
+  
+  .price-row {
+    padding: 5px 0;
+  }
+  
+  .price-label,
+  .price-value {
+    font-size: 0.85rem;
+  }
+  
+  .price-value.total {
+    font-size: 1.1rem;
+  }
+  
+  .savings-display {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  
+  .savings-amount {
+    align-items: center;
+  }
+  
+  .savings-note {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+  
+  .order-card .btn-primary {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+  
+  .order-card {
+    padding: 30px 20px;
+  }
 }
 
+/* Add this to your existing Order.css - Update price section styles */
 
-.order-card {
+/* Price Section - Fix for Single Refill */
+.price-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+  flex-grow: 1; /* Allow price section to grow */
+}
+
+/* Ensure all price rows have consistent spacing even without savings */
+.price-row {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  min-height: 24px; /* Fixed minimum height for each row */
+}
+
+/* Total row should have more spacing */
+.total-row {
+  border-top: 2px solid #ddd;
+  border-bottom: none;
+  padding-top: 12px;
+  margin-top: 8px;
+  min-height: 32px; /* Taller for total */
+}
+
+/* Effective row for cost per gallon */
+.effective-row {
+  background: #e3f2fd;
+  margin: 5px -15px -5px -15px;
+  padding: 10px 15px;
+  border-radius: 0 0 8px 8px;
+  min-height: 28px;
+}
+
+/* Add specific style for packages without savings */
+.order-card:not(:has(.savings-display)) .price-section {
+  padding-bottom: 20px; /* Extra padding when no savings */
+}
+
+/* Button Container adjustment */
+.button-container {
+  margin-top: auto;
+  padding-top: 20px;
+  min-height: 50px; /* Ensure consistent button placement */
+}
+/* Add this to your existing Order.css - Update price section styles */
+
+/* Price Section - Fix for Single Refill */
+.price-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+  flex-grow: 1; /* Allow price section to grow */
+}
+
+/* Ensure all price rows have consistent spacing even without savings */
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  min-height: 24px; /* Fixed minimum height for each row */
+}
+
+/* Total row should have more spacing */
+.total-row {
+  border-top: 2px solid #ddd;
+  border-bottom: none;
+  padding-top: 12px;
+  margin-top: 8px;
+  min-height: 32px; /* Taller for total */
+}
+
+/* Effective row for cost per gallon */
+.effective-row {
+  background: #e3f2fd;
+  margin: 5px -15px -5px -15px;
+  padding: 10px 15px;
+  border-radius: 0 0 8px 8px;
+  min-height: 28px;
+}
+
+/* Add specific style for packages without savings */
+.order-card:not(:has(.savings-display)) .price-section {
+  padding-bottom: 20px; /* Extra padding when no savings */
+}
+
+/* Button Container adjustment */
+.button-container {
+  margin-top: auto;
+  padding-top: 20px;
+  min-height: 50px; /* Ensure consistent button placement */
 }
