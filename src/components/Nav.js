@@ -1,29 +1,31 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import './Nav.css';
 import logo from '../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
-
+import { User2Icon, UserCircleIcon, UserIcon } from "lucide-react";
 
 function Nav() {
 
-  // const navigate = useNavigate();
-
-  // function handleProfileClick(){
-  //   navigate('/profile');
-  // }
+  
 
   return (
     <nav className="nav">
       <div className="logo">
         <img src={logo} alt="Aqualeann Daffodil Saligue" className="logo-image" />
-        <span className="logo-text">Aqualean</span>
+        <span className="logo-text">Aqualeann</span>
       </div>
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="#order">Order</a></li>
+        <li><a href="/order-packages">Order</a></li>
         <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Profile</a></li>
+        <li><a href="/about">About</a></li>
+        <li>
+            <a href="#profile" className="profile-link">
+              <span className="profile-icon"><UserCircleIcon/></span>
+              <span className="profile-name">Kean</span>
+            </a>
+        </li>
+
 
       </ul>
 
