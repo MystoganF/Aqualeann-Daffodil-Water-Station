@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Droplet } from 'lucide-react';
 import './Nav.css';
@@ -14,6 +14,19 @@ function Nav() {
   const closeMenu = () => {
     setIsOpen(false);
   };
+
+  // Prevent background scrolling when the mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   // Helper to check if a navigation link is the current active path
   const isActive = (path) => {
@@ -53,7 +66,6 @@ function Nav() {
             About
           </Link>
         </li>
-        {/* Replaced Login with FAQ */}
         <li>
           <Link to="/faq" className={isActive('/faq')} onClick={closeMenu}>
             FAQ
