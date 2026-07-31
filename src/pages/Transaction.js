@@ -1,7 +1,7 @@
 import React from "react";
 import "./Transaction.css";
 import Nav from "../components/Nav";
-import { ArrowLeft, Package, Check, Truck, Droplet, Star, School, Phone } from "lucide-react";
+import { ArrowLeft, Package, Check, Truck, Droplet, Star, School, Phone, Facebook } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 // Icon component mapping
@@ -158,18 +158,20 @@ function Transaction() {
                   </h3>
                 </div>
                 <p className="sidebar-text">
-                  To proceed with this package, please call our station directly. Have your order summary ready for faster processing.
+                  To proceed with this package, please call our station directly or message us on Facebook. Have your order summary ready for faster processing.
                 </p>
                 
-                <div className="contact-numbers">
-                  <div className="number-box">0931-970-9818</div>
-                  <div className="number-box">(032) 123-4567</div>
+                <div className="contact-action-list">
+                  <a href="tel:09319709818" className="contact-action-btn phone-btn">
+                    <Phone size={20} />
+                    <span>0931-970-9818</span>
+                  </a>
+                  
+                  <a href="YOUR_FACEBOOK_LINK_HERE" target="_blank" rel="noopener noreferrer" className="contact-action-btn fb-btn">
+                    <Facebook size={20} />
+                    <span>Message on Facebook</span>
+                  </a>
                 </div>
-
-                <a href="tel:09319709818" className="btn btn-primary call-btn">
-                  <Phone size={18} />
-                  Call Now to Order
-                </a>
               </div>
 
               {/* Delivery Info Card */}
@@ -181,7 +183,7 @@ function Transaction() {
                   </h3>
                 </div>
                 <p className="sidebar-text">
-                  Your order will be scheduled for delivery upon confirming your request via phone call.
+                  Your order will be scheduled for delivery upon confirming your request with our team.
                 </p>
                 <ul className="benefits-list">
                   <li>

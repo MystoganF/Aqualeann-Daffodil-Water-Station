@@ -278,42 +278,56 @@
   color: var(--text-muted);
   font-size: 0.95rem;
   line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.contact-card {
-  background-color: #f8fafc; /* slight distinction from white cards */
-}
-
-.contact-numbers {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   margin-bottom: 24px;
 }
 
-.number-box {
-  background-color: var(--white);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+.contact-card {
+  background-color: #f8fafc;
+}
+
+.contact-action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   padding: 14px;
-  text-align: center;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text-main);
-  letter-spacing: 0.5px;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.phone-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
   box-shadow: var(--shadow-sm);
 }
 
-.call-btn {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  padding: 16px;
-  font-size: 1.05rem;
-  text-decoration: none;
+.phone-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.fb-btn {
+  background-color: var(--white);
+  color: #1877F2; /* Facebook Brand Blue */
+  border: 1px solid #1877F2;
+}
+
+.fb-btn:hover {
+  background-color: #1877F2;
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .benefits-list {
