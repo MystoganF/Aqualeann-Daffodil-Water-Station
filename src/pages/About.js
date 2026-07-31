@@ -1,10 +1,20 @@
-import React from "react";
-import "./About.css";
-import Nav from "../components/Nav";
+import React from 'react';
+import './About.css';
+import Nav from '../components/Nav';
+import { 
+  Droplet, 
+  ShieldCheck, 
+  HeartHandshake, 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Clock,
+  Facebook
+} from 'lucide-react';
 
 function About() {
   return (
-    <div className="about">
+    <div className="about-page">
       {/* Header */}
       <header className="header">
         <div className="container">
@@ -14,108 +24,134 @@ function About() {
         </div>
       </header>
 
-      {/* About Hero */}
+      {/* Hero Section */}
       <section className="about-hero">
         <div className="container">
-          <h1>About Us</h1>
-          <p>
-            A family-owned water refilling station committed to clean, safe, and
-            affordable drinking water.
+          <h1>About Aqualean</h1>
+          <p className="hero-subtitle">
+            Your trusted source for premium purified, mineral, and alkaline water in Zaragoza Matalom, Leyte.
           </p>
         </div>
       </section>
 
-      {/* Who We Are */}
-      <section className="about-section">
+      {/* Mission Section */}
+      <section className="mission-section">
         <div className="container">
-          <h2>Who We Are</h2>
-          <p>
-            Aqualean Daffodil Saligue is a family-owned water refilling station
-            based in Zaragoza, Matalom, Leyte. Established in March 2025, our
-            business was built to provide accessible and reliable clean water for
-            local communities.
-          </p>
-        </div>
-      </section>
-
-      {/* Our Story */}
-      <section className="about-section light">
-        <div className="container">
-          <h2>Our Story</h2>
-          <p>
-            The Saligue family started this water refilling station after
-            recognizing a challenge faced by families in Zaragoza and Bukidnon,
-            Brgy. Sta. Paz. Water stations were far away, deliveries were often
-            delayed, and orders were sometimes not fulfilled.
-          </p>
-          <p>
-            To address this, we established Aqualean Daffodil Saligue closer to
-            the community—ensuring faster, more reliable access to clean drinking
-            water.
-          </p>
-        </div>
-      </section>
-
-      {/* Quality & Safety */}
-      <section className="about-section">
-        <div className="container">
-          <h2>Quality & Safety Assurance</h2>
-          <ul className="about-list">
-            <li>✔ Government-certified water refilling station</li>
-            <li>✔ Monthly water sample testing</li>
-            <li>✔ Strict sanitation and purification standards</li>
-            <li>✔ Clean, mineral-enriched, alkaline water</li>
-          </ul>
-        </div>
-      </section>
-
-      {/* Customers & Services */}
-      <section className="about-section light">
-        <div className="container">
-          <h2>Our Customers & Services</h2>
-          <p>We proudly serve:</p>
-          <ul className="about-list">
-            <li>Households</li>
-            <li>Sari-sari stores</li>
-            <li>Offices</li>
-            <li>Schools</li>
-          </ul>
-          <p className="bonus">
-            🎁 <strong>Special Offer:</strong> Free 1 gallon for every 10 gallons
-            ordered.
-          </p>
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="about-section">
-        <div className="container">
-          <h2>Our Values</h2>
-          <div className="values-grid">
-            <div className="value-card">
-              <h3>Affordability</h3>
-              <p>Fair pricing for every family and business.</p>
+          <div className="mission-content">
+            <div className="mission-text">
+              <h2>Our Mission</h2>
+              <div className="section-divider-left"></div>
+              <p>
+                At <strong>Aqualean Daffodil Saligue</strong>, we believe that access to clean, safe, and healthy drinking water is a fundamental right. Our mission is to provide our community with the highest quality hydration solutions through advanced purification technology and exceptional customer service.
+              </p>
+              <p>
+                Whether you need everyday purified water, mineral-enriched water for added taste, or pH-balanced alkaline water for optimal health, we ensure every drop that reaches your glass is pristine and refreshing.
+              </p>
             </div>
-            <div className="value-card">
-              <h3>Quality Assurance</h3>
-              <p>Consistent safety and cleanliness in every gallon.</p>
-            </div>
-            <div className="value-card">
-              <h3>Trust & Reliability</h3>
-              <p>Service you can depend on from people who care.</p>
+            <div className="mission-image-placeholder">
+              <Droplet size={80} className="water-icon-large" />
+              <h3>Pure. Clean. Refreshing.</h3>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Future Plans */}
-      <section className="about-section light">
+      {/* Core Values */}
+      <section className="values-section">
         <div className="container">
-          <h2>Looking Ahead</h2>
-          <ul className="about-list">
-            <li>🚚 Expansion of delivery services across Matalom Municipality</li>
-            <li>💻 Launch of online ordering for easier access</li>
-          </ul>
+          <div className="section-header">
+            <h2>Our Core Values</h2>
+            <div className="section-divider"></div>
+          </div>
+          
+          <div className="values-grid">
+            <div className="value-card">
+              <div className="value-icon-wrapper">
+                <ShieldCheck size={32} />
+              </div>
+              <h3>Uncompromising Quality</h3>
+              <p>We utilize state-of-the-art filtration and sanitization processes to ensure every gallon exceeds safety standards.</p>
+            </div>
+            
+            <div className="value-card">
+              <div className="value-icon-wrapper">
+                <HeartHandshake size={32} />
+              </div>
+              <h3>Community First</h3>
+              <p>As a local business in Leyte, we treat our customers like family, prioritizing your health and convenience above all.</p>
+            </div>
+            
+            <div className="value-card">
+              <div className="value-icon-wrapper">
+                <Droplet size={32} />
+              </div>
+              <h3>Health & Wellness</h3>
+              <p>Through our mineral and alkaline options, we aim to actively contribute to the overall well-being of our customers.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact & Location Section */}
+      <section className="contact-section">
+        <div className="container">
+          <div className="contact-container">
+            <div className="contact-info">
+              <h2>Get In Touch</h2>
+              <p>Have questions about our water packages or need to schedule a delivery? We're here to help.</p>
+              
+              <ul className="contact-list">
+                <li>
+                  <MapPin className="contact-icon" size={24} />
+                  <div>
+                    <strong>Location</strong>
+                    <span>Zaragoza Matalom, Leyte</span>
+                  </div>
+                </li>
+                <li>
+                  <Phone className="contact-icon" size={24} />
+                  <div>
+                    <strong>Phone</strong>
+                    <span>0931-970-9818</span>
+                  </div>
+                </li>
+                <li>
+                  <Mail className="contact-icon" size={24} />
+                  <div>
+                    <strong>Email</strong>
+                    <span>keanmaverickaaligue@gmail.com</span>
+                  </div>
+                </li>
+                <li>
+                  <Facebook className="contact-icon" size={24} />
+                  <div>
+                    <strong>Facebook</strong>
+                    <a href="https://www.facebook.com/profile.php?id=61592432765622" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Message us on Messenger</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="hours-card">
+              <div className="hours-header">
+                <Clock size={28} className="hours-icon" />
+                <h3>Business Hours</h3>
+              </div>
+              <div className="hours-list">
+                <div className="hours-row">
+                  <span className="day">Monday - Saturday</span>
+                  <span className="time">7:00 AM - 5:00 PM</span>
+                </div>
+                <div className="hours-row">
+                  <span className="day">Sunday</span>
+                  <span className="time">8:00 AM - 5:00 PM</span>
+                </div>
+              </div>
+              <div className="hours-footer">
+                <p>Delivery available during operating hours.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import About from './pages/About';
 import Order from './pages/Order'; 
 import Transaction from './pages/Transaction';
+import FAQ from './pages/FAQ';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path='/about' element={<About/>}/>
           <Route path='/order-packages' element={<Order/>}/>
           <Route path='/transaction' element={<Transaction/>}/>
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
 
   );

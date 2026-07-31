@@ -1,7 +1,7 @@
 import React from "react";
 import "./Order.css";
 import Nav from "../components/Nav";
-import { Droplet, Package, School, Star, Truck, TrendingDown } from "lucide-react";
+import { Droplet, Package, School, Star, Truck, TrendingDown, Plus, Info } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const PRICE_PER_GALLON = 25;
@@ -65,7 +65,7 @@ const packages = [
 ];
 
 // Icon component mapping
-const getIconComponent = (iconType, size = 42) => {
+const getIconComponent = (iconType, size = 32) => {
   switch (iconType) {
     case "droplet":
       return <Droplet size={size} />;
@@ -154,7 +154,8 @@ function Order() {
   };
   
   return (
-    <div className="order">
+    <div className="order-page">
+      {/* Header */}
       <header className="header">
         <div className="container">
           <div className="header-content">
@@ -163,21 +164,23 @@ function Order() {
         </div>
       </header>
 
+      {/* Hero Section */}
       <section className="order-hero">
         <div className="container">
           <h1>Choose Your Water Package</h1>
-          <p>
-            Each gallon costs <strong>₱{PRICE_PER_GALLON}</strong>. 
+          <p className="hero-subtitle">
+            Base rate: <strong>₱{PRICE_PER_GALLON} / gallon</strong>. 
             Orders below 10 gallons have a ₱10 delivery fee.  
             Orders 10 gallons and above enjoy <strong>FREE delivery</strong>.
           </p>
-          <div className="savings-note">
-            <TrendingDown size={18} />
+          <div className="savings-banner">
+            <TrendingDown size={20} />
             <span>Save up to 35% by choosing larger packages!</span>
           </div>
         </div>
       </section>
 
+      {/* Packages Grid */}
       <section className="order-packages">
         <div className="container">
           <div className="order-grid">
@@ -188,105 +191,100 @@ function Order() {
               const totalGallons = p.gallons + (p.free || 0);
               
               return (
-                <div
-                  key={p.id}
-                  className={`order-card ${p.popular ? "popular" : ""}`}
-                >
+                <div key={p.id} className={`order-card ${p.popular ? "popular" : ""}`}>
                   {p.popular && (
-                    <span className="popular-badge">Most Popular</span>
+                    <div className="popular-badge">Most Popular</div>
                   )}
 
-                  <div className="order-icon">
-                    {getIconComponent(p.iconType)}
+                  <div className="card-header">
+                    <div className="order-icon">
+                      {getIconComponent(p.iconType)}
+                    </div>
+                    <h3>{p.name}</h3>
+                    <p className="description">{getPackageDescription(p.name)}</p>
                   </div>
-                  <h3>{p.name}</h3>
                   
                   <div className="package-pricing">
-                    <div className="gallons-display">
-                      <span className="gallons-count">{p.gallons}</span>
-                      <span className="gallons-label">GALLONS</span>
-                    </div>
-                    
-                    {p.free > 0 && (
-                      <div className="free-display">
-                        <span className="free-icon">+</span>
-                        <span className="free-count">{p.free}</span>
-                        <span className="free-label">FREE GALLON{p.free > 1 ? 'S' : ''}</span>
-                      </div>
-                    )}
-                    
-                    <div className="price-section">
-                      {/* Base Price - Always show */}
-                      <div className="price-row">
-                        <span className="price-label">Base Price:</span>
-                        <span className="price-value">₱{p.basePrice}</span>
+                    {/* Gallons Display */}
+                    <div className="gallons-container">
+                      <div className="gallons-base">
+                        <span className="count">{p.gallons}</span>
+                        <span className="label">Gallons</span>
                       </div>
                       
-                      {/* Delivery */}
+                      {p.free > 0 && (
+                        <div className="gallons-free">
+                          <Plus size={16} />
+                          <span className="count">{p.free}</span>
+                          <span className="label">FREE</span>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Price Breakdown */}
+                    <div className="price-breakdown">
                       <div className="price-row">
-                        <span className="price-label">Delivery:</span>
-                        <span className={`price-value ${p.delivery.includes("FREE") ? "free-delivery" : ""}`}>
+                        <span className="label">Base Price</span>
+                        <span className="value">₱{p.basePrice}</span>
+                      </div>
+                      <div className="price-row">
+                        <span className="label">Delivery</span>
+                        <span className={`value ${p.delivery.includes("FREE") ? "highlight-green" : ""}`}>
                           {p.delivery.includes("FREE") ? "FREE" : "₱10"}
                         </span>
                       </div>
-                      
-                      {/* Total */}
+                      <div className="price-divider"></div>
                       <div className="price-row total-row">
-                        <span className="price-label">Total:</span>
-                        <span className="price-value total">₱{totalPrice}</span>
+                        <span className="label">Total Price</span>
+                        <span className="value total">₱{totalPrice}</span>
                       </div>
                       
-                      {/* Cost per Gallon - Only for packages with free gallons */}
                       {p.free > 0 && (
                         <div className="price-row effective-row">
-                          <span className="price-label">Cost/Gallon:</span>
-                          <span className="price-value effective">₱{effectivePricePerGallon}</span>
-                        </div>
-                      )}
-                      
-                      {/* Savings Display - Only show if there are actual savings (not for Single Refill) */}
-                      {p.id !== 1 && savings.amount > 0 && (
-                        <div className="savings-display">
-                          <span className="savings-label">
-                            <TrendingDown size={14} />
-                            You Save:
-                          </span>
-                          <div className="savings-amount">
-                            <span className="savings-price">₱{savings.amount}</span>
-                            <span className="savings-percentage">({savings.percentage}% OFF)</span>
-                          </div>
+                          <span className="label">Effective Cost:</span>
+                          <span className="value highlight-blue">₱{effectivePricePerGallon} / gal</span>
                         </div>
                       )}
                     </div>
+
+                    {/* Savings Display */}
+                    {p.id !== 1 && savings.amount > 0 && (
+                      <div className="savings-display">
+                        <div className="savings-main">
+                          <TrendingDown size={16} />
+                          <span>You Save ₱{savings.amount}</span>
+                        </div>
+                        <span className="savings-sub">({savings.percentage}% OFF vs individual)</span>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Button Container */}
-                  <div className="button-container">
-                    <button
-                      className="btn btn-primary"
+                  {/* Actions */}
+                  <div className="card-actions">
+                    <button 
+                      className={`btn ${p.popular ? "btn-primary" : "btn-secondary"} w-100`}
                       onClick={() => handleOrderClick(p)}
                     >
-                      Order Now
+                      Select Package
                     </button>
+                    {p.id !== 1 && savings.amount > 0 && (
+                      <div className="comparison-note">
+                        vs. {totalGallons} Single Refills (₱{savings.costIfIndividual})
+                      </div>
+                    )}
                   </div>
-                  
-                  {/* Savings Comparison Note - Only show for packages with savings */}
-                  {p.id !== 1 && savings.amount > 0 && (
-                    <p className="comparison-note">
-                      vs. buying {totalGallons} Single Refills: ₱{savings.costIfIndividual}
-                    </p>
-                  )}
                 </div>
               );
             })}
           </div>
           
-          {/* Pricing Note */}
-          <div className="pricing-note">
+          {/* Pricing Footer Note */}
+          <div className="pricing-footer-note">
+            <Info size={18} className="info-icon" />
             <p>
               <strong>Note:</strong> All packages include free bottle sanitization. 
               Free gallons are added to your total delivery. 
-              "You Save" calculation compares package price vs. buying individual gallons separately.
+              "You Save" calculations compare the package price against buying individual single refills separately.
             </p>
           </div>
         </div>

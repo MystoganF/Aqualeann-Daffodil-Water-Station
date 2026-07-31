@@ -1,0 +1,111 @@
+.faq-page {
+  background-color: var(--bg-main, #f8fafc);
+  min-height: 100vh;
+}
+
+.faq-hero {
+  background-color: var(--bg-hero, #f0f9ff);
+  padding: 64px 0 48px;
+  text-align: center;
+}
+
+.faq-hero h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--text-main, #0f172a);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.faq-hero .hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-muted, #64748b);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.faq-section {
+  padding: 64px 0 96px;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+.faq-card {
+  background-color: var(--white, #ffffff);
+  padding: 40px 32px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
+  transition: var(--transition, all 0.3s ease);
+}
+
+.faq-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0,0,0,0.1));
+}
+
+.faq-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  background-color: var(--bg-hero, #f0f9ff);
+  color: var(--primary-color, #0ea5e9);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.faq-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main, #0f172a);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.faq-card p {
+  color: var(--text-muted, #64748b);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.faq-footer {
+  text-align: center;
+  background-color: var(--white, #ffffff);
+  padding: 48px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color, #e2e8f0);
+}
+
+.faq-footer h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main, #0f172a);
+  margin-bottom: 8px;
+}
+
+.faq-footer p {
+  color: var(--text-muted, #64748b);
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .faq-hero {
+    padding: 48px 0 32px;
+  }
+  .faq-hero h1 {
+    font-size: 2.25rem;
+  }
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+  .faq-card {
+    padding: 32px 24px;
+  }
+}

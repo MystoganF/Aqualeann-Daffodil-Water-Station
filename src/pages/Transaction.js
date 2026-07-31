@@ -1,11 +1,11 @@
 import React from "react";
 import "./Transaction.css";
 import Nav from "../components/Nav";
-import { ArrowLeft, CreditCard, Package, Check, Truck, Droplet, Star, School } from "lucide-react";
+import { ArrowLeft, Package, Check, Truck, Droplet, Star, School, Phone } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-// Icon component mapping (same as Order.jsx)
-const getIconComponent = (iconType, size = 42) => {
+// Icon component mapping
+const getIconComponent = (iconType, size = 36) => {
   switch (iconType) {
     case "droplet":
       return <Droplet size={size} />;
@@ -39,13 +39,9 @@ function Transaction() {
     description: "Best value package! Get 11 gallons for the price of 10. Perfect for families and small offices. Includes free delivery and bottle sanitization."
   };
 
-  // Calculate total gallons
+  // Calculate totals
   const totalGallons = packageData.gallons + (packageData.free || 0);
-  
-  // Calculate estimated price (use the passed pricePerGallon or default to 25)
   const pricePerGallon = packageData.pricePerGallon || 25;
-  
-  // Use basePrice if provided, otherwise calculate it
   const subtotal = packageData.basePrice || (packageData.gallons * pricePerGallon);
   const deliveryFee = packageData.delivery.includes("FREE") ? 0 : 10;
   const total = subtotal + deliveryFee;
@@ -54,19 +50,8 @@ function Transaction() {
     navigate("/order-packages");
   };
 
-  const handleProceedToPayment = () => {
-    navigate("/payment", { 
-      state: { 
-        package: packageData,
-        total,
-        subtotal,
-        deliveryFee
-      }
-    });
-  };
-
   return (
-    <div className="transaction">
+    <div className="transaction-page">
       {/* Header */}
       <header className="header">
         <div className="container">
@@ -83,142 +68,141 @@ function Transaction() {
             <ArrowLeft size={20} />
             Back to Packages
           </button>
-          <h1>Complete Your Order</h1>
-          <p>Review your package details and proceed to payment</p>
+          <h1>Order Summary</h1>
+          <p>Review your package details and contact us to place your order</p>
         </div>
       </section>
 
-      <div className="container transaction-container">
-        <div className="transaction-content">
-          {/* Order Summary Card */}
-          <div className="summary-card">
-            <div className="summary-header">
-              <h2>
-                <Package size={24} />
-                Order Summary
-              </h2>
-              <span className="order-status">Pending Payment</span>
-            </div>
-
-            <div className="package-details">
-              <div className="package-header">
-                <div className="package-icon">
-                  {getIconComponent(packageData.iconType, 42)}
-                </div>
-                <div>
-                  <h3>{packageData.name}</h3>
-                  <p className="package-type">Water Package</p>
-                </div>
+      <section className="transaction-section">
+        <div className="container">
+          <div className="transaction-grid">
+            
+            {/* Left Column: Order Summary Card */}
+            <div className="summary-card">
+              <div className="card-header-flex">
+                <h2>
+                  <Package size={24} className="header-icon" />
+                  Order Details
+                </h2>
+                <span className="status-badge">Ready to Order</span>
               </div>
 
-              <div className="details-grid">
-                <div className="detail-item">
-                  <span className="detail-label">Gallons Purchased:</span>
-                  <span className="detail-value">{packageData.gallons} gal</span>
-                </div>
-                {packageData.free > 0 && (
-                  <div className="detail-item">
-                    <span className="detail-label">Free Gallons:</span>
-                    <span className="detail-value free-text">+{packageData.free} gal</span>
+              <div className="package-info-box">
+                <div className="package-title-row">
+                  <div className="icon-wrapper">
+                    {getIconComponent(packageData.iconType)}
                   </div>
-                )}
-                <div className="detail-item">
-                  <span className="detail-label">Total Gallons:</span>
-                  <span className="detail-value total-gallons">{totalGallons} gal</span>
+                  <div>
+                    <h3>{packageData.name}</h3>
+                    <span className="package-type">Water Package</span>
+                  </div>
                 </div>
-                <div className="detail-item">
-                  <span className="detail-label">Delivery:</span>
-                  <span className="detail-value">{packageData.delivery}</span>
+
+                <div className="details-grid">
+                  <div className="detail-item">
+                    <span className="detail-label">Purchased</span>
+                    <span className="detail-value">{packageData.gallons} gal</span>
+                  </div>
+                  {packageData.free > 0 && (
+                    <div className="detail-item highlight">
+                      <span className="detail-label">Free Bonus</span>
+                      <span className="detail-value">+{packageData.free} gal</span>
+                    </div>
+                  )}
+                  <div className="detail-item">
+                    <span className="detail-label">Total Volume</span>
+                    <span className="detail-value font-bold">{totalGallons} gal</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Delivery</span>
+                    <span className="detail-value">{packageData.delivery}</span>
+                  </div>
+                </div>
+
+                <div className="description-box">
+                  <h4>About This Package</h4>
+                  <p>{packageData.description}</p>
                 </div>
               </div>
 
-              {/* Package Description */}
-              <div className="description-section">
-                <h4>About This Package</h4>
-                <p className="package-description">
-                  {packageData.description}
-                </p>
+              {/* Price Breakdown */}
+              <div className="price-breakdown">
+                <h3>Price Breakdown</h3>
+                <div className="price-row">
+                  <span className="price-label">{packageData.gallons} gallons × ₱{pricePerGallon}</span>
+                  <span className="price-value">₱{subtotal.toFixed(2)}</span>
+                </div>
+                <div className="price-row">
+                  <span className="price-label">Delivery Fee</span>
+                  <span className={`price-value ${deliveryFee === 0 ? "free-text" : ""}`}>
+                    {deliveryFee === 0 ? "FREE" : `₱${deliveryFee.toFixed(2)}`}
+                  </span>
+                </div>
+                <div className="price-divider"></div>
+                <div className="price-row total-row">
+                  <span className="price-label">Estimated Total</span>
+                  <span className="price-value total-amount">₱{total.toFixed(2)}</span>
+                </div>
               </div>
             </div>
 
-            {/* Price Breakdown */}
-            <div className="price-breakdown">
-              <h3>Price Breakdown</h3>
-              <div className="price-item">
-                <span>{packageData.gallons} gallons × ₱{pricePerGallon}</span>
-                <span>₱{subtotal.toFixed(2)}</span>
-              </div>
-              <div className="price-item">
-                <span>Delivery Fee</span>
-                <span className={deliveryFee === 0 ? "free-text" : ""}>
-                  {deliveryFee === 0 ? "FREE" : `₱${deliveryFee.toFixed(2)}`}
-                </span>
-              </div>
-              <div className="price-total">
-                <span>Total Amount</span>
-                <span className="total-amount">₱{total.toFixed(2)}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Order Actions Sidebar */}
-          <div className="actions-sidebar">
-            <div className="delivery-info">
-              <h3>
-                <Truck size={20} />
-                Delivery Information
-              </h3>
-              <p>Your order will be delivered within 24-48 hours after payment confirmation.</p>
-              <ul className="benefits-list">
-                <li>
-                  <Check size={16} />
-                  Contactless delivery available
-                </li>
-                <li>
-                  <Check size={16} />
-                  Free bottle sanitization
-                </li>
-                <li>
-                  <Check size={16} />
-                  Schedule delivery time
-                </li>
-              </ul>
-            </div>
-
-            <div className="payment-section">
-              <h3>
-                <CreditCard size={20} />
-                Payment Method
-              </h3>
-              <p>Secure payment processed through our trusted partners</p>
+            {/* Right Column: Actions Sidebar */}
+            <div className="actions-sidebar">
               
-              <div className="payment-options">
-                <div className="payment-option">
-                  <input type="radio" id="gcash" name="payment" defaultChecked />
-                  <label htmlFor="gcash">GCash</label>
+              {/* Contact to Order Card */}
+              <div className="sidebar-card contact-card">
+                <div className="card-header-flex">
+                  <h3>
+                    <Phone size={20} className="header-icon primary-color" />
+                    How to Order
+                  </h3>
                 </div>
-                <div className="payment-option">
-                  <input type="radio" id="card" name="payment" />
-                  <label htmlFor="card">Credit/Debit Card</label>
+                <p className="sidebar-text">
+                  To proceed with this package, please call our station directly. Have your order summary ready for faster processing.
+                </p>
+                
+                <div className="contact-numbers">
+                  <div className="number-box">0931-970-9818</div>
+                  <div className="number-box">(032) 123-4567</div>
                 </div>
-                <div className="payment-option">
-                  <input type="radio" id="cod" name="payment" />
-                  <label htmlFor="cod">Cash on Delivery</label>
-                </div>
+
+                <a href="tel:09319709818" className="btn btn-primary call-btn">
+                  <Phone size={18} />
+                  Call Now to Order
+                </a>
               </div>
 
-              <button className="btn btn-primary btn-payment" onClick={handleProceedToPayment}>
-                <CreditCard size={20} />
-                Proceed to Payment
-              </button>
+              {/* Delivery Info Card */}
+              <div className="sidebar-card delivery-card">
+                <div className="card-header-flex">
+                  <h3>
+                    <Truck size={20} className="header-icon" />
+                    Delivery Info
+                  </h3>
+                </div>
+                <p className="sidebar-text">
+                  Your order will be scheduled for delivery upon confirming your request via phone call.
+                </p>
+                <ul className="benefits-list">
+                  <li>
+                    <Check size={18} className="check-icon" />
+                    Contactless delivery available
+                  </li>
+                  <li>
+                    <Check size={18} className="check-icon" />
+                    Free bottle sanitization
+                  </li>
+                  <li>
+                    <Check size={18} className="check-icon" />
+                    Flexible delivery scheduling
+                  </li>
+                </ul>
+              </div>
 
-              <p className="security-note">
-                🔒 Your payment information is secure and encrypted
-              </p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
